@@ -7,6 +7,9 @@ namespace FinalAssetManagement.Core.Entities
         public string Name { get; private set; }
 
         //--------------------------------------------------------------
+        public List<Asset> Assets { get; private set; } = new(); // Create a blank list (not null)
+
+        //--------------------------------------------------------------
 
         private Category() //for EFCore
         {
