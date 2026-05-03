@@ -2,7 +2,7 @@
 
 namespace FinalAssetManagement.Core.Entities
 {
-    public class Category : BaseEntity
+    public class Category : BaseEntity, IAggregateRoot
     {
         public string Name { get; private set; }
 

@@ -2,7 +2,7 @@
 
 namespace FinalAssetManagement.Core.Entities
 {
-    public class User : BaseEntity
+    public class User : BaseEntity, IAggregateRoot
     {
         public string UserName { get; private set; }
         public string PasswordHash { get; private set; }
