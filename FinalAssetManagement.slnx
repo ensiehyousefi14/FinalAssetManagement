@@ -1,0 +1,16 @@
+<Solution>
+  <Folder Name="/1. Domain/">
+    <Project Path="FinalAssetManagement.Contract/FinalAssetManagement.Contract.csproj" />
+    <Project Path="FinalAssetManagement.Core/FinalAssetManagement.Core.csproj" />
+  </Folder>
+  <Folder Name="/2. Infrastructure/">
+    <Project Path="FinalAssetManagement.Infrastructure/FinalAssetManagement.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/3. Application/">
+    <Project Path="FinalAssetManagement.Application/FinalAssetManagement.Application.csproj" />
+  </Folder>
+  <Folder Name="/4. Presentation/">
+    <Project Path="FinalAssetManagement.WebAPI/FinalAssetManagement.WebAPI.csproj" />
+    <Project Path="FinalAssetManagement.WebApplication/FinalAssetManagement.WebApplication.csproj" />
+  </Folder>
+</Solution>
