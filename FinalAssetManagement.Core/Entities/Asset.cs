@@ -2,7 +2,7 @@
 
 namespace FinalAssetManagement.Core.Entities
 {
-    public class Asset : BaseEntity
+    public class Asset : BaseEntity, IAggregateRoot
     {
         public string Name { get; private set; }
         public decimal InitialPrice { get; private set; }
