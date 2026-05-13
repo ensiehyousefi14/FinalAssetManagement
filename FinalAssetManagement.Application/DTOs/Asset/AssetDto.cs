@@ -9,11 +9,14 @@
         // string? means the value is actually allowed to be null.
         public string Name { get; set; } = null!;
 
-        public decimal InitialPrice { get; set; }
+        public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
+        public string CategoryName { get; set; } = null!;
+
 
         public int UserId { get; set; }
+        public string? UserName { get; set; }
 
     }
 }
