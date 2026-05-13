@@ -1,4 +1,5 @@
 ﻿using FinalAssetManagement.Core.Common;
+using FinalAssetManagement.Core.Enums;
 
 namespace FinalAssetManagement.Core.Entities
 {
@@ -6,6 +7,7 @@ namespace FinalAssetManagement.Core.Entities
     {
         public string Description { get; private set; }
         public decimal Amount { get; private set; }
+        public TransactionType Type { get; private set; }
 
         //--------------------------------------------------------------
 
@@ -21,36 +23,40 @@ namespace FinalAssetManagement.Core.Entities
             
         }
 
-        public Transaction(string description, decimal amount, Asset asset)
+        // Internal constructor so that Transaction cannot be created outside
+        // the domain layer. Only the Asset aggregate should create transactions
+        // to keep the domain rules and data consistency.
+        internal Transaction(string description, decimal amount, Asset asset, TransactionType type)
         {
-            SetDescription(description);
-            SetAmount(amount);
-            SetAsset(asset);
+            ChangeDescription(description);
+            ChangeAmount(amount);
+            ChangeAsset(asset);
+            Type = type;
         }
 
         //--------------------------------------------------------------
 
-        public void SetDescription(string newDescription)
+        public void ChangeDescription(string newDescription)
         {
             if (string.IsNullOrWhiteSpace(newDescription))
             {
-                throw new ArgumentException("Description is invalid.");
+                throw new ArgumentException("Description is necessary.");
             }
 
-            Description = newDescription;
+            Description = newDescription.Trim();
         }
 
-        public void SetAmount(decimal newAmount)
+        public void ChangeAmount(decimal newAmount)
         {
-            if (newAmount < 0)
+            if (newAmount <= 0)
             {
-                throw new ArgumentException("Amount cannot be negative.");
+                throw new ArgumentException("Amount must be greater than zero");
             }
 
             Amount = newAmount;
         }
 
-        public void SetAsset(Asset newAsset)
+        public void ChangeAsset(Asset newAsset)
         {
             if (newAsset == null)
             {

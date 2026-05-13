@@ -1,8 +1,8 @@
-﻿using FinalAssetManagement.Core.Enums;
+﻿using FinalAssetManagement.Application.DTOs.Asset;
 
 namespace FinalAssetManagement.Application.DTOs.Transaction
 {
-    public class TransactionDto // for Get
+    public class TransactionDetailsDto
     {
         public int Id { get; set; }
 
@@ -12,8 +12,6 @@ namespace FinalAssetManagement.Application.DTOs.Transaction
 
         public string TransactionType { get; set; } = null!;
 
-        public int AssetId { get; set; }
-
-        public string AssetName { get; set; } = null!;
+        public AssetDto Asset { get; set; } = null!;
     }
 }

@@ -1,11 +1,12 @@
 ﻿using FinalAssetManagement.Core.Common;
+using FinalAssetManagement.Core.Enums;
 
 namespace FinalAssetManagement.Core.Entities
 {
     public class Asset : BaseEntity, IAggregateRoot
     {
         public string Name { get; private set; }
-        public decimal InitialPrice { get; private set; }
+        public decimal Price { get; private set; }
 
         //--------------------------------------------------------------
 
@@ -22,43 +23,46 @@ namespace FinalAssetManagement.Core.Entities
 
         public List<Transaction> Transactions { get; private set; } = new(); // Create a blank list (not null)
 
+        //private readonly List<Transaction> _transactions = new();
+        //public IReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();
+
         //--------------------------------------------------------------
 
         private Asset() // for EFCore
         {
-            
+
         }
 
-        public Asset(string name, decimal initialPrice, Category category)
+        public Asset(string name, decimal price, Category category)
         {
-            SetName(name);
-            SetPrice(initialPrice);
-            SetCategory(category);
+            ChangeName(name);
+            ChangePrice(price);
+            ChangeCategory(category);
         }
 
         //--------------------------------------------------------------
 
-        public void SetName(string newName)
+        public void ChangeName(string newName)
         {
             if (string.IsNullOrWhiteSpace(newName))
             {
-                throw new ArgumentException("Name is invalid.");
+                throw new ArgumentException("Asset name is necessary.");
             }
 
-            Name = newName;
+            Name = newName.Trim();
         }
 
-        public void SetPrice(decimal newPrice)
+        public void ChangePrice(decimal newPrice)
         {
             if (newPrice < 0)
             {
-                throw new ArgumentException("Price cannot be negative.");
+                throw new ArgumentException("Asset price cannot be negative.");
             }
 
-            InitialPrice = newPrice;
+            Price = newPrice;
         }
 
-        public void SetCategory(Category category)
+        public void ChangeCategory(Category category)
         {
             if (category == null)
             {
@@ -79,6 +83,29 @@ namespace FinalAssetManagement.Core.Entities
             UserId = user.Id;
         }
 
-        //--------------------------------------------------------------
+        public void RemoveUser()
+        {
+            User = null;
+            UserId = null;
+        }
+
+        // Only the Asset aggregate can create and apply transactions.
+        public void AddTransaction(string description, decimal amount, TransactionType type)
+        {
+            var transaction = new Transaction(description, amount, this, type);
+
+            decimal newPrice = type == TransactionType.Increase ?
+                               Price + transaction.Amount :
+                               Price - transaction.Amount;
+
+            if (newPrice < 0)
+                throw new InvalidOperationException("Asset Price cannot be negative.");
+
+            Price = newPrice;
+
+            Transactions.Add(transaction);
+        }
     }
+
+    //--------------------------------------------------------------
 }

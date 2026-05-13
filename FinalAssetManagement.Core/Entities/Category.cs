@@ -9,6 +9,9 @@ namespace FinalAssetManagement.Core.Entities
         //--------------------------------------------------------------
         public List<Asset> Assets { get; private set; } = new(); // Create a blank list (not null)
 
+        //private readonly List<Asset> _assets = new();
+        //public IReadOnlyCollection<Asset> Assets => _assets.AsReadOnly();
+
         //--------------------------------------------------------------
 
         private Category() //for EFCore
@@ -18,19 +21,19 @@ namespace FinalAssetManagement.Core.Entities
 
         public Category(string name)
         {
-            SetName(name);
+            ChangeName(name);
         }
 
         //--------------------------------------------------------------
 
-        public void SetName(string newName)
+        public void ChangeName(string newName)
         {
             if (string.IsNullOrWhiteSpace(newName))
             {
-                throw new ArgumentException("Name is invalid.");
+                throw new ArgumentException("Category Name is necessary.");
             }
 
-            Name = newName;
+            Name = newName.Trim();
         }
 
         //--------------------------------------------------------------

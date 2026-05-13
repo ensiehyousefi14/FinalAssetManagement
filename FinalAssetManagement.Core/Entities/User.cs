@@ -19,30 +19,30 @@ namespace FinalAssetManagement.Core.Entities
 
         public User(string userName, string passwordHash)
         {
-            SetUserName(userName);
-            SetPasswordHash(passwordHash);
+            ChangeUserName(userName);
+            ChangePasswordHash(passwordHash);
         }
 
         //--------------------------------------------------------------
 
-        public void SetUserName(string newUserName)
+        public void ChangeUserName(string newUserName)
         {
             if (string.IsNullOrWhiteSpace(newUserName))
             {
-                throw new ArgumentException("UserName is invalid");
+                throw new ArgumentException("UserName is necessary");
             }
 
-            UserName = newUserName;
+            UserName = newUserName.Trim();
         }
 
-        public void SetPasswordHash(string newPasswordHash)
+        public void ChangePasswordHash(string newPasswordHash)
         {
             if (string.IsNullOrWhiteSpace(newPasswordHash))
             {
-                throw new ArgumentException("PasswordHash is invalid.");
+                throw new ArgumentException("PasswordHash is necessary.");
             }
 
-            PasswordHash = newPasswordHash;
+            PasswordHash = newPasswordHash.Trim();
         }
 
         //--------------------------------------------------------------

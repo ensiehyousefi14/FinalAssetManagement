@@ -18,7 +18,7 @@ namespace FinalAssetManagement.Infrastructure.Configurations
                    .IsRequired()
                    .HasMaxLength(50);
 
-            builder.Property(a => a.InitialPrice)
+            builder.Property(a => a.Price)
                    .IsRequired()
                    .HasPrecision(18,2);
 
