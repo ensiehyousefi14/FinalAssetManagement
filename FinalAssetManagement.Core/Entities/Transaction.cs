@@ -56,6 +56,11 @@ namespace FinalAssetManagement.Core.Entities
             Amount = newAmount;
         }
 
+        public void ChangeType(TransactionType transactionType)
+        {
+            Type = transactionType;
+        }
+
         public void ChangeAsset(Asset newAsset)
         {
             if (newAsset == null)

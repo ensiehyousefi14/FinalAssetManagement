@@ -9,6 +9,8 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<Asset>> GetAssetsByCategoryIdAsync(int categoryId)
         {
             return await _dbSet.Where(a => a.CategoryId == categoryId)
+                               .Include(a => a.Category)
+                               .Include(a => a.User)
                                .AsNoTracking()
                                .ToListAsync();
         }
@@ -16,20 +18,16 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
         public async Task<IEnumerable<Asset>> GetAssetsByUserIdAsync(int userId)
         {
             return await _dbSet.Where(a => a.UserId == userId)
+                               .Include(a => a.Category)
+                               .Include(a => a.User)
                                .AsNoTracking()
                                .ToListAsync();
         }
 
-        public async Task<Asset?> GetAssetWithCategoryAsync(int assetId)
+        public async Task<Asset?> GetAssetWithCategoryAndUserAsync(int assetId)
         {
             return await _dbSet.Include(a => a.Category)
-                               .AsNoTracking()
-                               .FirstOrDefaultAsync(a => a.Id == assetId);
-        }
-
-        public async Task<Asset?> GetAssetWithUserAsync(int assetId)
-        {
-            return await _dbSet.Include(a => a.User)
+                               .Include(a => a.User)
                                .AsNoTracking()
                                .FirstOrDefaultAsync(a => a.Id == assetId);
         }
