@@ -10,9 +10,7 @@ namespace FinalAssetManagement.Contract.Repositories
 
         //Navigation Loading for Asset
 
-        Task<Asset?> GetAssetWithCategoryAsync(int assetId);
-
-        Task<Asset?> GetAssetWithUserAsync(int assetId);
+        Task<Asset?> GetAssetWithCategoryAndUserAsync(int assetId);
 
         Task<Asset?> GetAssetWithTransactionsAsync(int assetId);
 
