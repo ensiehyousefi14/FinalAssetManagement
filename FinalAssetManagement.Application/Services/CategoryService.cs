@@ -88,6 +88,10 @@ namespace FinalAssetManagement.Application.Services
             if (category == null)
                 throw new InvalidOperationException("Category Not Found.");
 
+            bool hasAsset = await _unitOfWork.Categories.HasAssetsAsync(categoryId);
+            if (hasAsset)
+                throw new InvalidOperationException("Can not delete category because it has associated assets.");
+
             _unitOfWork.Categories.Delete(category);
             await _unitOfWork.SaveAsync();
         }

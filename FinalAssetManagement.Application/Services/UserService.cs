@@ -47,6 +47,9 @@ namespace FinalAssetManagement.Application.Services
 
         public async Task CreateUserAsync(CreateUserDto dto)
         {
+            if (await _unitOfWork.Users.IsUserNameExistsAsync(dto.UserName))
+                throw new InvalidOperationException("UserName already exists.");
+
             // Hash the user's input password before saving it to the database.
             var passwordHash = PasswordHasher.Hash(dto.Password);
 
@@ -63,6 +66,9 @@ namespace FinalAssetManagement.Application.Services
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
             if (user == null)
                 throw new InvalidOperationException("User Not Found.");
+
+            if (await _unitOfWork.Users.IsUserNameExistsAsync(dto.UserName, userId))
+                throw new InvalidOperationException("UserName already exists.");
 
             user.ChangeUserName(dto.UserName);
 
@@ -84,7 +90,12 @@ namespace FinalAssetManagement.Application.Services
                 throw new InvalidOperationException("User Not Found.");
 
             if (!string.IsNullOrWhiteSpace(dto.UserName))
+            {
+                if (await _unitOfWork.Users.IsUserNameExistsAsync(dto.UserName, userId))
+                    throw new InvalidOperationException("UserName already exists.");
+
                 user.ChangeUserName(dto.UserName);
+            }
 
             if (!string.IsNullOrWhiteSpace(dto.Password))
             {
@@ -103,6 +114,10 @@ namespace FinalAssetManagement.Application.Services
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
             if (user == null)
                 throw new InvalidOperationException("User Not Found.");
+
+            bool hasAsset = await _unitOfWork.Users.HasAssetsAsync(userId);
+            if (hasAsset)
+                throw new InvalidOperationException("Can not delete User because it has associated assets.");
 
             _unitOfWork.Users.Delete(user);
             await _unitOfWork.SaveAsync();

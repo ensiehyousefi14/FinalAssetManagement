@@ -47,5 +47,10 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
                                .AsNoTracking()
                                .FirstOrDefaultAsync(a => a.Id == assetId);
         }
+
+        public async Task<bool> HasTransactionsAsync(int assetId)
+        {
+            return await _dbSet.AnyAsync(a => a.Id == assetId && a.Transactions.Any());
+        }
     }
 }

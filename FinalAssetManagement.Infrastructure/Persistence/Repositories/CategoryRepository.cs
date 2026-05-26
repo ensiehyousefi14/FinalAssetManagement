@@ -22,5 +22,10 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
                                .AsNoTracking()
                                .FirstOrDefaultAsync(c => c.Id == categoryId);
         }
+
+        public async Task<bool> HasAssetsAsync(int categoryId)
+        {
+            return await _dbSet.AnyAsync(c => c.Id == categoryId && c.Assets.Any());
+        }
     }
 }
