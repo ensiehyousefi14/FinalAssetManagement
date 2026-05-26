@@ -134,6 +134,10 @@ namespace FinalAssetManagement.Application.Services
             if (asset == null)
                 throw new InvalidOperationException("Asset Not Found.");
 
+            bool hasTransaction = await _unitOfWork.Assets.HasTransactionsAsync(assetId);
+            if (hasTransaction)
+                throw new InvalidOperationException("Can not delete asset because it has associated transactions.");
+
             _unitOfWork.Assets.Delete(asset);
             await _unitOfWork.SaveAsync();
         }

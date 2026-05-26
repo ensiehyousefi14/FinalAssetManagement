@@ -22,5 +22,20 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync(u => u.Id == userId);
         }
+
+        public async Task<bool> HasAssetsAsync(int userId)
+        {
+            return await _dbSet.AnyAsync(u => u.Id == userId && u.Assets.Any());
+        }
+
+
+        /// <param name="excludeUserId">
+        /// Pass null for new users (Create). 
+        /// Pass the current user's ID for existing users (Update) to avoid self-collision.
+        /// </param>
+        public async Task<bool> IsUserNameExistsAsync(string userName, int? excludeUserId = null)
+        {
+            return await _dbSet.AnyAsync(u => u.UserName == userName && (excludeUserId == null || excludeUserId != u.Id));
+        }
     }
 }

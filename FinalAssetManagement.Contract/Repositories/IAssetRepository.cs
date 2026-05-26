@@ -16,5 +16,7 @@ namespace FinalAssetManagement.Contract.Repositories
 
         Task<Asset?> GetAssetWithDetailsAsync(int assetId);
 
+        Task<bool> HasTransactionsAsync(int assetId);
+
     }
 }
