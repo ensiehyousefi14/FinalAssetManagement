@@ -90,7 +90,7 @@ namespace FinalAssetManagement.Core.Entities
         }
 
         // Only the Asset aggregate can create and apply transactions.
-        public void AddTransaction(string description, decimal amount, TransactionType type)
+        public Transaction AddTransaction(string description, decimal amount, TransactionType type)
         {
             var transaction = new Transaction(description, amount, this, type);
 
@@ -104,6 +104,8 @@ namespace FinalAssetManagement.Core.Entities
             Price = newPrice;
 
             Transactions.Add(transaction);
+
+            return transaction;
         }
     }
 

@@ -18,7 +18,7 @@ namespace FinalAssetManagement.Application.Services.Interfaces
         Task<IEnumerable<AssetDto>> GetAssetsByUserAsync(int userId);
 
 
-        Task CreateAssetAsync(CreateAssetDto dto);
+        Task<AssetDto> CreateAssetAsync(CreateAssetDto dto);
         Task FullUpdateAssetAsync(int assetId, UpdateAssetDto dto);
         Task PartialUpdateAssetAsync(int assetId, PatchAssetDto dto);
         Task RemoveAssetAsync(int assetId);
