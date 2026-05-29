@@ -10,7 +10,7 @@ namespace FinalAssetManagement.Application.Services.Interfaces
         Task<IEnumerable<TransactionDto>> GetTransactionsByAssetAsync(int assetId);
 
 
-        Task CreateTransactionAsync(int assetId, CreateTransactionDto dto);
+        Task<TransactionDto> CreateTransactionAsync(int assetId, CreateTransactionDto dto);
         Task FullUpdateTransactionAsync(int assetId, int transactionId, UpdateTransactionDto dto);
         Task PartialUpdateTransactionAsync(int assetId, int transactionId, PatchTransactionDto dto);
         Task RemoveTransactionAsync(int assetId, int transactionId);

@@ -45,7 +45,7 @@ namespace FinalAssetManagement.Application.Services
 
         //------------------------------------------------------------------
 
-        public async Task CreateUserAsync(CreateUserDto dto)
+        public async Task<UserDto> CreateUserAsync(CreateUserDto dto)
         {
             if (await _unitOfWork.Users.IsUserNameExistsAsync(dto.UserName))
                 throw new InvalidOperationException("UserName already exists.");
@@ -57,6 +57,8 @@ namespace FinalAssetManagement.Application.Services
 
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveAsync();
+
+            return _mapper.Map<UserDto>(user);
         }
 
         //------------------------------------------------------------------

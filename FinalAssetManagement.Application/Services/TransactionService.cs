@@ -50,15 +50,17 @@ namespace FinalAssetManagement.Application.Services
 
         //------------------------------------------------------------------
 
-        public async Task CreateTransactionAsync(int assetId, CreateTransactionDto dto)
+        public async Task<TransactionDto> CreateTransactionAsync(int assetId, CreateTransactionDto dto)
         {
             var asset = await _unitOfWork.Assets.GetByIdAsync(assetId);
             if (asset is null)
                 throw new InvalidOperationException("Asset Not Found.");
 
-            asset.AddTransaction(dto.Description, dto.Amount, dto.TransactionType);
+            var createdTransaction = asset.AddTransaction(dto.Description, dto.Amount, dto.TransactionType);
 
             await _unitOfWork.SaveAsync();
+
+            return _mapper.Map<TransactionDto>(createdTransaction);
         }
 
         //------------------------------------------------------------------

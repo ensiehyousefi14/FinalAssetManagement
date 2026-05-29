@@ -44,11 +44,13 @@ namespace FinalAssetManagement.Application.Services
 
         //------------------------------------------------------------------
 
-        public async Task CreateCategoryAsync(CreateCategoryDto dto)
+        public async Task<CategoryDto> CreateCategoryAsync(CreateCategoryDto dto)
         {
             Category category = new Category(dto.Name);
             await _unitOfWork.Categories.AddAsync(category);
             await _unitOfWork.SaveAsync();
+
+            return _mapper.Map<CategoryDto>(category);
         }
 
         //------------------------------------------------------------------

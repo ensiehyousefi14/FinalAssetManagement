@@ -60,7 +60,7 @@ namespace FinalAssetManagement.Application.Services
 
         //------------------------------------------------------------------
 
-        public async Task CreateAssetAsync(CreateAssetDto dto)
+        public async Task<AssetDto> CreateAssetAsync(CreateAssetDto dto)
         {
             var category = await _unitOfWork.Categories.GetByIdAsync(dto.CategoryId);
             if (category == null)
@@ -69,6 +69,8 @@ namespace FinalAssetManagement.Application.Services
             Asset asset = new Asset(dto.Name, dto.Price, category);
             await _unitOfWork.Assets.AddAsync(asset);
             await _unitOfWork.SaveAsync();
+
+            return _mapper.Map<AssetDto>(asset);
         }
 
         //------------------------------------------------------------------
