@@ -18,7 +18,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet]
+        [HttpGet] 
+        // RouteSample = api/transactions 
+
         public async Task<IActionResult> GetAllTransactions()
         {
             var transactions = await _transactionService.GetAllTransactionsAsync();
@@ -27,8 +29,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{transactionId:int}")]
-        public async Task<IActionResult> GetTransaction(int transactionId)
+        [HttpGet("{transactionId:int}")] 
+        // RouteSample = api/transactions/5
+
+        public async Task<IActionResult> GetTransaction([FromRoute] int transactionId)
         {
             var transaction = await _transactionService.GetTransactionAsync(transactionId);
             if (transaction is null)
@@ -39,8 +43,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{TransactionId:int}")]
-        public async Task<IActionResult> GetTransactionDetails(int transactionId)
+        [HttpGet("details/{TransactionId:int}")] 
+        // RouteSample = api/transactions/details/5
+
+        public async Task<IActionResult> GetTransactionDetails([FromRoute] int transactionId)
         {
             var transactionDetails = await _transactionService.GetTransactionDetailsAsync(transactionId);
             if (transactionDetails is null)
@@ -51,8 +57,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("asset/{assetId:int}")]
-        public async Task<IActionResult> GetTransactionsByAsset(int assetId)
+        [HttpGet("asset/{assetId:int}")] 
+        // RouteSample = api/transactions/asset/4
+
+        public async Task<IActionResult> GetTransactionsByAsset([FromRoute] int assetId)
         {
             var transactions = await _transactionService.GetTransactionsByAssetAsync(assetId);
             return Ok(new ApiResponse<IEnumerable<TransactionDto>>(transactions, "Transactions Retrieved Successfully.", true));
@@ -60,8 +68,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost("asset/{assetId:int}")]
-        public async Task<IActionResult> CreateTransaction(int assetId, CreateTransactionDto dto)
+        [HttpPost("asset/{assetId:int}")] 
+        // RouteSample = api/transactions/asset/3
+
+        public async Task<IActionResult> CreateTransaction([FromRoute] int assetId, 
+                                                           [FromBody] CreateTransactionDto dto)
         {
             try
             {
@@ -78,8 +89,12 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("asset/{assetId:int}/transaction/{transactionId:int}")]
-        public async Task<IActionResult> UpdateTransaction(int assetId, int transactionId, UpdateTransactionDto dto)
+        [HttpPut("asset/{assetId:int}/transaction/{transactionId:int}")] 
+        // RouteSample = api/transactions/asset/6/transaction/8
+
+        public async Task<IActionResult> UpdateTransaction([FromRoute] int assetId, 
+                                                           [FromRoute] int transactionId, 
+                                                           [FromBody] UpdateTransactionDto dto)
         {
             try
             {
@@ -94,8 +109,12 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("asset/{assetId:int}/transaction/{transactionId:int}")]
-        public async Task<IActionResult> PartialUpdateTransaction(int assetId, int transactionId, PatchTransactionDto dto)
+        [HttpPatch("asset/{assetId:int}/transaction/{transactionId:int}")] 
+        // RouteSample = api/transactions/asset/3/transaction/7
+
+        public async Task<IActionResult> PartialUpdateTransaction([FromRoute] int assetId, 
+                                                                  [FromRoute] int transactionId, 
+                                                                  [FromBody] PatchTransactionDto dto)
         {
             try
             {
@@ -110,8 +129,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("asset/{assetId:int}/transaction/{transactionId:int}")]
-        public async Task<IActionResult> RemoveTransaction(int assetId, int transactionId)
+        [HttpDelete("asset/{assetId:int}/transaction/{transactionId:int}")] 
+        // RouteSample = api/transactions/asset/9/transaction/11
+
+        public async Task<IActionResult> RemoveTransaction([FromRoute] int assetId, 
+                                                           [FromRoute] int transactionId)
         {
             try
             {

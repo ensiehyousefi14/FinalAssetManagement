@@ -18,7 +18,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] // RouteSample = api/asset(ControllerName)
+        [HttpGet] 
+        // RouteSample = api/asset(ControllerName)
+
         public async Task<IActionResult> GetAllAssets()
         {
             var assets = await _assetService.GetAllAssetsAsync();
@@ -27,7 +29,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{assetId}")] // RouteSample = api/asset/5
+        [HttpGet("{assetId}")] 
+        // RouteSample = api/asset/5
+
         public async Task<IActionResult> GetAsset([FromRoute] int assetId)
         {
             var asset = await _assetService.GetAssetAsync(assetId);
@@ -40,7 +44,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{assetId}")] // RouteSample = api/asset/details/5
+        [HttpGet("details/{assetId}")] 
+        // RouteSample = api/asset/details/5
+
         public async Task<IActionResult> GetAssetDetails([FromRoute] int assetId)
         {
             var assetDetails = await _assetService.GetAssetDetailsAsync(assetId);
@@ -53,7 +59,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("category/{categoryId}")] // RouteSample = api/asset/category/3
+        [HttpGet("category/{categoryId}")] 
+        // RouteSample = api/asset/category/3
+
         public async Task<IActionResult> GetAssetsByCategory([FromRoute] int categoryId)
         {
             var assets = await _assetService.GetAssetsByCategoryAsync(categoryId);
@@ -62,7 +70,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("user/{userId}")] // RouteSample = api/asset/user/4
+        [HttpGet("user/{userId}")] 
+        // RouteSample = api/asset/user/4
+
         public async Task<IActionResult> GetAssetsByUser([FromRoute] int userId)
         {
             var assets = await _assetService.GetAssetsByUserAsync(userId);
@@ -71,7 +81,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost] // RouteSample = api/asset
+        [HttpPost] 
+        // RouteSample = api/asset
+
         public async Task<IActionResult> CreateAsset([FromBody] CreateAssetDto dto)
         {
             try
@@ -89,8 +101,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{assetId}")] // RouteSample = api/asset/5
-        public async Task<IActionResult> UpdateAsset([FromRoute] int assetId, [FromBody] UpdateAssetDto dto)
+        [HttpPut("{assetId}")] 
+        // RouteSample = api/asset/5
+
+        public async Task<IActionResult> UpdateAsset([FromRoute] int assetId, 
+                                                     [FromBody] UpdateAssetDto dto)
         {
             try
             {
@@ -105,8 +120,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{assetId}")] // RouteSample = api/asset/5
-        public async Task<IActionResult> PartialUpdateAsset([FromRoute] int assetId, [FromBody] PatchAssetDto dto)
+        [HttpPatch("{assetId}")] 
+        // RouteSample = api/asset/5
+
+        public async Task<IActionResult> PartialUpdateAsset([FromRoute] int assetId, 
+                                                            [FromBody] PatchAssetDto dto)
         {
             try
             {
@@ -121,7 +139,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{assetId}")] // routeSample = api/asset/5
+        [HttpDelete("{assetId}")] 
+        // routeSample = api/asset/5
+
         public async Task<IActionResult> RemoveAsset([FromRoute] int assetId)
         {
             try
