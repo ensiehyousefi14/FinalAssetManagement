@@ -18,7 +18,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] // RouteSample = api/user(ControllerName)
+        [HttpGet] 
+        // RouteSample = api/user(ControllerName)
+
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userService.GetAllUsersAsync();
@@ -27,7 +29,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{userId:int}")] // RouteSample = api/user/5
+        [HttpGet("{userId:int}")] 
+        // RouteSample = api/user/5
+
         public async Task<IActionResult> GetUser([FromRoute] int userId)
         {
             var user = await _userService.GetUserAsync(userId);
@@ -39,7 +43,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{userId:int}")] // RouteSample = api/user/details/5
+        [HttpGet("details/{userId:int}")] 
+        // RouteSample = api/user/details/5
+
         public async Task<IActionResult> GetUserDetails([FromRoute] int userId)
         {
             var userDetails = await _userService.GetUserDetailsAsync(userId);
@@ -51,7 +57,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost] // RouteSample = api/user
+        [HttpPost] 
+        // RouteSample = api/user
+
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
         {
             try
@@ -70,8 +78,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{userId:int}")] //RouteSample = api/user/5
-        public async Task<IActionResult> UpdateUser([FromRoute] int userId, [FromBody] UpdateUserDto dto)
+        [HttpPut("{userId:int}")] 
+        //RouteSample = api/user/5
+
+        public async Task<IActionResult> UpdateUser([FromRoute] int userId, 
+                                                    [FromBody] UpdateUserDto dto)
         {
             try
             {
@@ -87,8 +98,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{userId:int}")] // RouteSample = api/user/5
-        public async Task<IActionResult> PartialUpdateUser([FromRoute] int userId, [FromBody] PatchUserDto dto)
+        [HttpPatch("{userId:int}")] 
+        // RouteSample = api/user/5
+
+        public async Task<IActionResult> PartialUpdateUser([FromRoute] int userId, 
+                                                           [FromBody] PatchUserDto dto)
         {
             try
             {
@@ -103,7 +117,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{userId:int}")] //RouteSample = api/user/5
+        [HttpDelete("{userId:int}")] 
+        //RouteSample = api/user/5
+
         public async Task<IActionResult> RemoveUser([FromRoute] int userId)
         {
             try

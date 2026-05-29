@@ -18,7 +18,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] // RouteSample = api/category
+        [HttpGet] 
+        // RouteSample = api/category
+
         public async Task<IActionResult> GetAllCategories()
         {
             var categories = await _categoryService.GetAllCategoriesAsync();
@@ -27,7 +29,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{categoryId:int}")] // RouteSample = api/category/5
+        [HttpGet("{categoryId:int}")] 
+        // RouteSample = api/category/5
+
         public async Task<IActionResult> GetCategory([FromRoute] int categoryId)
         {
             var category = await _categoryService.GetCategoryAsync(categoryId);
@@ -40,7 +44,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{categoryId:int}")] // RouteSample = api/category/details/5
+        [HttpGet("details/{categoryId:int}")] 
+        // RouteSample = api/category/details/5
+
         public async Task<IActionResult> GetCategoryDetails([FromRoute] int categoryId)
         {
             var categoryDetails = await _categoryService.GetCategoryDetailsAsync(categoryId);
@@ -53,7 +59,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost] // RouteSample = api/category
+        [HttpPost] 
+        // RouteSample = api/category
+
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
         {
             try
@@ -71,8 +79,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{categoryId:int}")] // RouteSample = api/category/5
-        public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId, [FromBody] UpdateCategoryDto dto)
+        [HttpPut("{categoryId:int}")] 
+        // RouteSample = api/category/5
+
+        public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId, 
+                                                        [FromBody] UpdateCategoryDto dto)
         {
             try
             {
@@ -87,8 +98,11 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{categoryId:int}")] // RouteSample = api/category/5
-        public async Task<IActionResult> PartialUpdateCategory([FromRoute] int categoryId, [FromBody] PatchCategoryDto dto)
+        [HttpPatch("{categoryId:int}")] 
+        // RouteSample = api/category/5
+
+        public async Task<IActionResult> PartialUpdateCategory([FromRoute] int categoryId, 
+                                                               [FromBody] PatchCategoryDto dto)
         {
             try
             {
@@ -103,7 +117,9 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{categoryId:int}")] // RouteSample = api/category/5
+        [HttpDelete("{categoryId:int}")] 
+        // RouteSample = api/category/5
+
         public async Task<IActionResult> RemoveCategory([FromRoute] int categoryId)
         {
             try
