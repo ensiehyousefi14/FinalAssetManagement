@@ -24,7 +24,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         public async Task<IActionResult> GetAllAssets()
         {
             var assets = await _assetService.GetAllAssetsAsync();
-            return Ok(new ApiResponse<IEnumerable<AssetDto>>(assets, "Assets Retrieved Suuccesfully.", true));
+            return Ok(new ApiResponse<IEnumerable<AssetDto>>(assets, "Assets Retrieved Succesfully.", true));
         }
 
         //---------------------------------------------------------------------------------------------------

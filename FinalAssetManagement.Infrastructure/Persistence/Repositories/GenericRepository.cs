@@ -64,5 +64,51 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
         {
             return await _dbSet.AnyAsync(e => EF.Property<int>(e, "Id") == id);
         }
+
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>>? predicate = null)
+        {
+            if (predicate is null)
+                return await _dbSet.CountAsync();
+
+            return await _dbSet.CountAsync(predicate);
+        }
+
+        public async Task<IEnumerable<TEntity>> GetPagedAsync(
+                                                                int page,
+                                                                int pageSize,
+                                                                Expression<Func<TEntity, bool>>? predicate = null,
+                                                                Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
+                                                                params Expression<Func<TEntity, object>>[] includes
+                                                             )
+        {
+            if (page <= 0) page = 1;
+            if (pageSize <= 0) pageSize = 10;
+
+            IQueryable<TEntity> query = _dbSet;
+
+            // Includes
+            if (includes is not null && includes.Length > 0)
+            {
+                foreach (var include in includes)
+                    query = query.Include(include);
+            }
+
+            // Filter
+            if (predicate is not null)
+                query = query.Where(predicate);
+
+            // No tracking for read
+            query = query.AsNoTracking();
+
+            // Ordering (strongly recommended)
+            if (orderBy is not null)
+                query = orderBy(query);
+
+            // Pagination
+            return await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
     }
 }

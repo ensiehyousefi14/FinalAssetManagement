@@ -21,7 +21,7 @@ namespace FinalAssetManagement.Core.Entities
 
         //--------------------------------------------------------------
 
-        public List<Transaction> Transactions { get; private set; } = new(); // Create a blank list (not null)
+        public List<Transaction> Transactions { get; private set; } = []; // Create a blank list (not null)
 
         //private readonly List<Transaction> _transactions = new();
         //public IReadOnlyCollection<Transaction> Transactions => _transactions.AsReadOnly();

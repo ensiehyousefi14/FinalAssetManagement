@@ -1,22 +1,32 @@
 using FinalAssetManagement.Application.Mappings;
 using FinalAssetManagement.Application.Services;
 using FinalAssetManagement.Application.Services.Interfaces;
+using FinalAssetManagement.Application.Validations.Asset;
 using FinalAssetManagement.Contract.Repositories;
 using FinalAssetManagement.Infrastructure.Persistence;
 using FinalAssetManagement.Infrastructure.Persistence.Repositories;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+//----------------------------------------------------------------------------------------------------------
+
 // Add services to the container.
 builder.Services.AddControllers();
+
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Register Swagger generator services
 builder.Services.AddOpenApi();
+
+//----------------------------------------------------------------------------------------------------------
 
 // Add Automapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+//----------------------------------------------------------------------------------------------------------
 
 // Inject Services
 // Transient: Created every time they are requested from the service container.
@@ -35,17 +45,23 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
+//----------------------------------------------------------------------------------------------------------
 
 // Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(
        options => options.UseSqlServer(builder.Configuration.GetConnectionString("FinalAssetMngConn")));
 
+//----------------------------------------------------------------------------------------------------------
 
-// Register Swagger generator services
-builder.Services.AddOpenApi();
+// FluentValidation registration
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateAssetDtoValidator>();
+
+//----------------------------------------------------------------------------------------------------------
 
 var app = builder.Build();
 
+//----------------------------------------------------------------------------------------------------------
 
 // Configure the HTTP request pipeline.
 // Enable OpenAPI/Swagger UI in Development environment
@@ -62,3 +78,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+//----------------------------------------------------------------------------------------------------------
