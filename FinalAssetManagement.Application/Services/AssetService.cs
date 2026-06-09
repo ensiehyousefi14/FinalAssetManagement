@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FinalAssetManagement.Application.Common;
 using FinalAssetManagement.Application.DTOs.Asset;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Contract.Repositories;

@@ -8,7 +8,7 @@ namespace FinalAssetManagement.Core.Entities
         public string PasswordHash { get; private set; }
 
         //--------------------------------------------------------------
-        public List<Asset> Assets { get; private set; } = new(); // Create a blank list (not null)
+        public List<Asset> Assets { get; private set; } = []; // Create a blank list (not null)
 
         //--------------------------------------------------------------
 

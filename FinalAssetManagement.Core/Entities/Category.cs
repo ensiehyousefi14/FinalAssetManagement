@@ -7,7 +7,7 @@ namespace FinalAssetManagement.Core.Entities
         public string Name { get; private set; }
 
         //--------------------------------------------------------------
-        public List<Asset> Assets { get; private set; } = new(); // Create a blank list (not null)
+        public List<Asset> Assets { get; private set; } = []; // Create a blank list (not null)
 
         //private readonly List<Asset> _assets = new();
         //public IReadOnlyCollection<Asset> Assets => _assets.AsReadOnly();
