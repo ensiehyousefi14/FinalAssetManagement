@@ -4,7 +4,7 @@ namespace FinalAssetManagement.Core.Entities
 {
     public class Category : BaseEntity, IAggregateRoot
     {
-        public string Name { get; private set; }
+        public string Name { get; private set; } = null!;
 
         //--------------------------------------------------------------
         public List<Asset> Assets { get; private set; } = []; // Create a blank list (not null)

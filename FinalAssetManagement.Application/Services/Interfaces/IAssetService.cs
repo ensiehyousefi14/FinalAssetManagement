@@ -1,5 +1,4 @@
-﻿using FinalAssetManagement.Application.Common;
-using FinalAssetManagement.Application.DTOs.Asset;
+﻿using FinalAssetManagement.Application.DTOs.Asset;
 
 namespace FinalAssetManagement.Application.Services.Interfaces
 {

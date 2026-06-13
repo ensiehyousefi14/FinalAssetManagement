@@ -4,8 +4,8 @@ namespace FinalAssetManagement.Core.Entities
 {
     public class User : BaseEntity, IAggregateRoot
     {
-        public string UserName { get; private set; }
-        public string PasswordHash { get; private set; }
+        public string UserName { get; private set; } = null!;
+        public string PasswordHash { get; private set; } = null!;
 
         //--------------------------------------------------------------
         public List<Asset> Assets { get; private set; } = []; // Create a blank list (not null)

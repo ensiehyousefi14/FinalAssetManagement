@@ -5,7 +5,7 @@ namespace FinalAssetManagement.Core.Entities
 {
     public class Asset : BaseEntity, IAggregateRoot
     {
-        public string Name { get; private set; }
+        public string Name { get; private set; } = null!;
         public decimal Price { get; private set; }
 
         //--------------------------------------------------------------

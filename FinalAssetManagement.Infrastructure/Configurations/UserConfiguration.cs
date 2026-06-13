@@ -20,7 +20,7 @@ namespace FinalAssetManagement.Infrastructure.Configurations
 
             builder.Property(u => u.PasswordHash)
                    .IsRequired()
-                   .HasMaxLength(50);
+                   .HasMaxLength(128);
 
             //--------------------------------------------------------
         }

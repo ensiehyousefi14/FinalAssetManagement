@@ -5,7 +5,7 @@ namespace FinalAssetManagement.Core.Entities
 {
     public class Transaction : BaseEntity
     {
-        public string Description { get; private set; }
+        public string Description { get; private set; } = null!;
         public decimal Amount { get; private set; }
         public TransactionType Type { get; private set; }
 

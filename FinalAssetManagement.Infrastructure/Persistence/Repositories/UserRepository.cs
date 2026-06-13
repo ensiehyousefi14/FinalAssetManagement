@@ -6,6 +6,7 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
 {
     public class UserRepository(ApplicationDbContext context) : GenericRepository<User>(context), IUserRepository
     {
+
         public async Task<User?> GetUserWithAssetsAsync(int userId)
         {
             return await _dbSet.Include(u => u.Assets)
@@ -36,6 +37,12 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
         public async Task<bool> IsUserNameExistsAsync(string userName, int? excludeUserId = null)
         {
             return await _dbSet.AnyAsync(u => u.UserName == userName && (excludeUserId == null || excludeUserId != u.Id));
+        }
+
+        public async Task<User?> GetByUserNameAsync(string userName)
+        {
+            return await _dbSet.AsNoTracking()
+                               .FirstOrDefaultAsync(u => u.UserName == userName);
         }
     }
 }

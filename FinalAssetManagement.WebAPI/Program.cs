@@ -3,11 +3,15 @@ using FinalAssetManagement.Application.Services;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Application.Validations.Asset;
 using FinalAssetManagement.Contract.Repositories;
+using FinalAssetManagement.Infrastructure.Authentication;
 using FinalAssetManagement.Infrastructure.Persistence;
 using FinalAssetManagement.Infrastructure.Persistence.Repositories;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,6 +48,8 @@ builder.Services.AddScoped<IAssetRepository, AssetRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 //----------------------------------------------------------------------------------------------------------
 
@@ -56,6 +62,35 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 // FluentValidation registration
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateAssetDtoValidator>();
+
+//----------------------------------------------------------------------------------------------------------
+
+// Jwt Settings
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
+
+var jwtSettings = builder.Configuration
+                         .GetSection("JwtSettings")
+                         .Get<JwtSettings>() 
+                         ?? throw new InvalidOperationException("JwtSettings section is missing or invalid.");
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+
+        ValidIssuer = jwtSettings.Issuer,
+        ValidAudience = jwtSettings.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+    };
+});
 
 //----------------------------------------------------------------------------------------------------------
 
@@ -72,6 +107,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
