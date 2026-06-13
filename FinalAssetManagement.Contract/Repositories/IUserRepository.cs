@@ -11,5 +11,7 @@ namespace FinalAssetManagement.Contract.Repositories
         Task<bool> IsUserNameExistsAsync(string userName, int? excludeUserId = null);
 
         Task<bool> HasAssetsAsync(int userId);
+
+        Task<User?> GetByUserNameAsync(string userName);
     }
 }

@@ -1,10 +1,12 @@
 ﻿using FinalAssetManagement.Application.DTOs.Transaction;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.WebAPI.Wrappers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FinalAssetManagement.WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class TransactionController : ControllerBase
