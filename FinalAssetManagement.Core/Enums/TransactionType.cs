@@ -2,7 +2,7 @@
 {
     public enum TransactionType
     {
-        Increase =1,
+        Increase = 1,
         Decrease = 2
     }
 }

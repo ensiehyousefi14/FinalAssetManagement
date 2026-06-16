@@ -1,15 +1,16 @@
-﻿using System.Security.Cryptography;
+﻿using FinalAssetManagement.Application.Common.Interfaces;
+using System.Security.Cryptography;
 
-namespace FinalAssetManagement.Core.Common
+namespace FinalAssetManagement.Infrastructure.Security
 {
-    public static class PasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
         private const int SaltSize = 16; // 128-bit
         private const int KeySize = 32;  // 256-bit
         private const int Iterations = 100_000;
 
         // خروجی: "Base64Hash:Base64Salt"
-        public static string Hash(string password)
+        public string Hash(string password)
         {
             if (password is null)
                 throw new ArgumentNullException(nameof(password));
@@ -29,7 +30,7 @@ namespace FinalAssetManagement.Core.Common
             return $"{hash}:{saltText}";
         }
 
-        public static bool Verify(string password, string storedPasswordHash)
+        public bool Verify(string password, string storedPasswordHash)
         {
             if (password is null)
                 throw new ArgumentNullException(nameof(password));
