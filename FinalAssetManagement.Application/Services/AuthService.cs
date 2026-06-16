@@ -1,7 +1,7 @@
-﻿using FinalAssetManagement.Application.DTOs.Auth;
+﻿using FinalAssetManagement.Application.Common.Interfaces;
+using FinalAssetManagement.Application.DTOs.Auth;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Contract.Repositories;
-using FinalAssetManagement.Core.Common;
 using FinalAssetManagement.Core.Entities;
 
 namespace FinalAssetManagement.Application.Services
@@ -11,11 +11,15 @@ namespace FinalAssetManagement.Application.Services
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public AuthService(IUnitOfWork unitOfWork, IJwtTokenGenerator jwtTokenGenerator)
+        public AuthService(IUnitOfWork unitOfWork, 
+                           IJwtTokenGenerator jwtTokenGenerator, 
+                           IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;
             _jwtTokenGenerator = jwtTokenGenerator;
+            _passwordHasher = passwordHasher;
         }
 
         //------------------------------------------------------------------
@@ -26,7 +30,7 @@ namespace FinalAssetManagement.Application.Services
             if (user is null)
                 throw new InvalidOperationException("Invalid UserName or Password.");
 
-            var isPasswordValid = PasswordHasher.Verify(dto.Password, user.PasswordHash);
+            var isPasswordValid = _passwordHasher.Verify(dto.Password, user.PasswordHash);
             if (!isPasswordValid)
                 throw new InvalidOperationException("Invalid UserName or Password.");
 
@@ -44,7 +48,7 @@ namespace FinalAssetManagement.Application.Services
             if (isUserNameExists)
                 throw new InvalidOperationException("UserName already exists.");
 
-            var passwordHash = PasswordHasher.Hash(dto.Password);
+            var passwordHash = _passwordHasher.Hash(dto.Password);
 
             var user = new User(dto.UserName, passwordHash);
 

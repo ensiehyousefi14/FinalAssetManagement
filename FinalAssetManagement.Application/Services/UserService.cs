@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using FinalAssetManagement.Application.Common.Interfaces;
 using FinalAssetManagement.Application.DTOs.User;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Contract.Repositories;
-using FinalAssetManagement.Core.Common;
 using FinalAssetManagement.Core.Entities;
 
 namespace FinalAssetManagement.Application.Services
@@ -12,11 +12,15 @@ namespace FinalAssetManagement.Application.Services
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork, 
+                           IMapper mapper, 
+                           IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _passwordHasher = passwordHasher;
         }
 
         //------------------------------------------------------------------
@@ -51,7 +55,7 @@ namespace FinalAssetManagement.Application.Services
                 throw new InvalidOperationException("UserName already exists.");
 
             // Hash the user's input password before saving it to the database.
-            var passwordHash = PasswordHasher.Hash(dto.Password);
+            var passwordHash = _passwordHasher.Hash(dto.Password);
 
             User user = new User(dto.UserName, passwordHash);
 
@@ -75,7 +79,7 @@ namespace FinalAssetManagement.Application.Services
             user.ChangeUserName(dto.UserName);
 
             // Hash the user's new input password before updating it in the database.
-            var passwordHash = PasswordHasher.Hash(dto.Password);
+            var passwordHash = _passwordHasher.Hash(dto.Password);
             user.ChangePasswordHash(passwordHash);
 
             // Update() is not required here since the entity is already tracked by EF Core.
@@ -102,7 +106,7 @@ namespace FinalAssetManagement.Application.Services
             if (!string.IsNullOrWhiteSpace(dto.Password))
             {
                 // Hash the user's new input password before updating it in the database.
-                var passwordHash = PasswordHasher.Hash(dto.Password);
+                var passwordHash = _passwordHasher.Hash(dto.Password);
                 user.ChangePasswordHash(passwordHash);
             }
 

@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FinalAssetManagement.Application\FinalAssetManagement.Application.csproj" />
     <ProjectReference Include="..\FinalAssetManagement.Contract\FinalAssetManagement.Contract.csproj" />
   </ItemGroup>
 
