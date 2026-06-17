@@ -1,3 +1,4 @@
+using FinalAssetManagement.Application.Common.Interfaces;
 using FinalAssetManagement.Application.Mappings;
 using FinalAssetManagement.Application.Services;
 using FinalAssetManagement.Application.Services.Interfaces;
@@ -6,6 +7,7 @@ using FinalAssetManagement.Contract.Repositories;
 using FinalAssetManagement.Infrastructure.Authentication;
 using FinalAssetManagement.Infrastructure.Persistence;
 using FinalAssetManagement.Infrastructure.Persistence.Repositories;
+using FinalAssetManagement.Infrastructure.Security;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -50,6 +52,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 //----------------------------------------------------------------------------------------------------------
 
@@ -62,6 +65,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 // FluentValidation registration
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateAssetDtoValidator>();
+
+//----------------------------------------------------------------------------------------------------------
+
+builder.Services.AddEndpointsApiExplorer();
 
 //----------------------------------------------------------------------------------------------------------
 
