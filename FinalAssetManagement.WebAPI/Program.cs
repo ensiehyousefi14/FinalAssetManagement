@@ -8,11 +8,11 @@ using FinalAssetManagement.Infrastructure.Authentication;
 using FinalAssetManagement.Infrastructure.Persistence;
 using FinalAssetManagement.Infrastructure.Persistence.Repositories;
 using FinalAssetManagement.Infrastructure.Security;
-using FluentValidation;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using System.Text;
 
 
