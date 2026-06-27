@@ -59,6 +59,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
+        [AllowAnonymous]
         [HttpPost] 
         // RouteSample = api/user
 
