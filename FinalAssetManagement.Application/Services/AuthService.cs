@@ -57,7 +57,7 @@ namespace FinalAssetManagement.Application.Services
 
             var token = _jwtTokenGenerator.GenerateToken(user.Id, user.UserName);
 
-            return new AuthResponseDto { UserName = dto.UserName, Token = token };
+            return new AuthResponseDto { UserName = user.UserName, Token = token };
         }
 
         //------------------------------------------------------------------
