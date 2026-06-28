@@ -13,4 +13,7 @@
     <Project Path="FinalAssetManagement.WebAPI/FinalAssetManagement.WebAPI.csproj" />
     <Project Path="FinalAssetManagement.WebApplication/FinalAssetManagement.WebApplication.csproj" />
   </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".gitignore" />
+  </Folder>
 </Solution>
