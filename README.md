@@ -1,44 +1,63 @@
-FinalAssetManagement
-An Asset Management RESTful API built with ASP.NET Core (.NET 10) and modern C#, following Clean Architecture and Separation of Concerns, with Entity Framework Core, Repository/Unit of Work, JWT Authentication, AutoMapper, and FluentValidation.
-────────────────────────────────────────
-🚀 Key Features
-🔹 Clean Architecture (Onion Architecture)
-🛠️ Repository & Unit of Work Patterns
-🔐 JWT Authentication & Role-based Authorization
-📦 Entity Framework Core (Code First)
-✨ AutoMapper for object mapping
-✅ FluentValidation for request validation
-⚡ Standardized API Responses (Unified Wrapper)
-────────────────────────────────────────
-🛠 Technologies
-💻 ASP.NET Core (.NET 10)
-🎯 C# (Modern Features)
-🗄️ SQL Server
-🛡️ JWT Authentication
-🗺️ AutoMapper
-🔍 FluentValidation
-────────────────────────────────────────
-🏗 Project Architecture
-The project follows Clean Architecture principles to ensure maintainability, scalability, and separation of concerns.
-🔸 Domain → Entities and core business rules  
-🔸 Application → DTOs, interfaces, business logic  
-🔸 Infrastructure → Database access and external services  
-🔸 API → Controllers and HTTP endpoints  
-────────────────────────────────────────
-🚀 Getting Started
-Prerequisites:
-🔹 .NET SDK 10  
-🔹 SQL Server  
-🔹 Visual Studio / VS Code  
+FinalAssetManagement 🚀
 
-Clone the repository:
-git clone https://github.com/ensiehyousefi14/FinalAssetManagement.git
-Navigate to the project folder:
-cd FinalAssetManagement
-Update the connection string in appsettings.json
-Run the project:
-dotnet run
-Test API endpoints using Postman.
-────────────────────────────────────────
+An Asset Management RESTful API built with **ASP.NET Core (.NET 10)**. This project follows **Clean Architecture** and **Separation of Concerns** to ensure high maintainability and scalability.
+
+🏗️ Project Architecture
+The project follows **Onion Architecture** principles.
+
+![Architecture Diagram](images/architecture-diagram.png)
+
+✨ Key Features
+- 🏗️ **Clean Architecture:** Strict separation of layers.
+- 🔁 **Repository & Unit of Work:** Efficient data management patterns.
+- 🛡️ **JWT Authentication:** Secure role-based authorization.
+- 📦 **Entity Framework Core:** Code-First approach for database management.
+- 🎨 **AutoMapper:** Automated object mapping.
+- ✅ **FluentValidation:** Robust request validation.
+- ⚡ **Standardized API Responses:** Unified wrapper for all endpoints.
+
+
+🗄️ Database Schema
+Detailed design for asset tracking.
+![Database Diagram](images/DatabaseDiagram.png)
+
+
+⚙️ API Usage & Testing
+🔑 Authentication Flow
+The API enforces secure access.
+
+| Login API Endpoint | Handling Unauthorized Access |
+| :---: | :---: |
+| ![Login API](images/login-api.png) | ![Unauthorized](images/unauthorized.PNG) |
+
+📊 Asset Management
+Example of standard response implementation.
+![Get Assets](images/get-assets.png)
+
+
+🛠️ Getting Started
+📋 Prerequisites
+- .NET SDK 10
+- SQL Server
+
+📥 Installation
+1. Clone the repository:
+   git clone https://github.com/ensiehyousefi14/FinalAssetManagement.git
+   cd FinalAssetManagement
+
+2. Configure Database:
+   Open src/API/appsettings.json and update your connection string.
+
+3. Apply Migrations:
+   dotnet ef database update --project src/Infrastructure --startup-project src/API
+
+---
+
+🤝 Support & Contribution
+Issues: If you find any bugs or have feature requests, please open an Issue.
+Contributions: Pull requests are welcome. Please ensure your code follows the existing clean architecture style.
+
 ⚖️ License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. Feel free to use and modify it for your needs.
+
+Developed with ❤️ by Ensieh Yousefi
