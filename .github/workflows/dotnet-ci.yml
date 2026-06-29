@@ -5,23 +5,21 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build-test-publish:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ دریافت سورس کد
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️⃣ نصب .NET
       - name: Setup .NET 10
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "10.x"
 
-      # 3️⃣ کش کردن NuGet برای سرعت بیشتر
       - name: Cache NuGet packages
         uses: actions/cache@v4
         with:
@@ -30,23 +28,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      # 4️⃣ Restore
       - name: Restore dependencies
         run: dotnet restore
 
-      # 5️⃣ Build
       - name: Build solution
         run: dotnet build --no-restore --configuration Release
 
-      # 6️⃣ Test (اگر پروژه تست داری اجرا می‌شود)
       - name: Run tests
         run: dotnet test --no-build --configuration Release --verbosity normal
 
-      # 7️⃣ Publish API
       - name: Publish project
         run: dotnet publish --no-build --configuration Release -o publish
 
-      # 8️⃣ آپلود خروجی به عنوان Artifact
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
