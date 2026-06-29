@@ -1,5 +1,4 @@
 using FinalAssetManagement.Application.Common.Interfaces;
-using FinalAssetManagement.Application.Mappings;
 using FinalAssetManagement.Application.Services;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Application.Validations.Asset;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation.AspNetCore;
+using FinalAssetManagement.Application.Mappings;
 using FluentValidation;
 using System.Text;
 
