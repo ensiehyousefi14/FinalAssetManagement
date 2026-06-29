@@ -1,5 +1,5 @@
-using FinalAssetManagement.Application.Common.Interfaces;
 using FinalAssetManagement.Application.Services;
+using FinalAssetManagement.Application.Common.Interfaces;
 using FinalAssetManagement.Application.Services.Interfaces;
 using FinalAssetManagement.Application.Validations.Asset;
 using FinalAssetManagement.Contract.Repositories;
