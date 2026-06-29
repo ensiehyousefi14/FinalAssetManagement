@@ -9,6 +9,8 @@ namespace FinalAssetManagement.Infrastructure.Security
         private const int KeySize = 32;  // 256-bit
         private const int Iterations = 100_000;
 
+        //---------------------------------------------------------------------------------------
+
         // خروجی: "Base64Hash:Base64Salt"
         public string Hash(string password)
         {
@@ -30,6 +32,7 @@ namespace FinalAssetManagement.Infrastructure.Security
             return $"{hash}:{saltText}";
         }
 
+        //---------------------------------------------------------------------------------------
         public bool Verify(string password, string storedPasswordHash)
         {
             if (password is null)
@@ -58,5 +61,7 @@ namespace FinalAssetManagement.Infrastructure.Security
 
             return CryptographicOperations.FixedTimeEquals(actual, expected);
         }
+
+        //---------------------------------------------------------------------------------------
     }
 }

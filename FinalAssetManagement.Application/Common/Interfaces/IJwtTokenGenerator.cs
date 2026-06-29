@@ -1,4 +1,4 @@
-﻿namespace FinalAssetManagement.Contract.Repositories
+﻿namespace FinalAssetManagement.Application.Common.Interfaces
 {
     public interface IJwtTokenGenerator
     {

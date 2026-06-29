@@ -2,6 +2,7 @@
 
 namespace FinalAssetManagement.Contract.Repositories
 {
+    // Provides queries for retrieving User entities with, or filtered by their related navigation properties.
     public interface IUserRepository : IGenericRepository<User>
     {
         Task<User?> GetUserWithAssetsAsync(int userId);

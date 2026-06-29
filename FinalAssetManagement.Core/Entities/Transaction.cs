@@ -31,7 +31,7 @@ namespace FinalAssetManagement.Core.Entities
             ChangeDescription(description);
             ChangeAmount(amount);
             ChangeAsset(asset);
-            Type = type;
+            ChangeType(type);
         }
 
         //--------------------------------------------------------------
