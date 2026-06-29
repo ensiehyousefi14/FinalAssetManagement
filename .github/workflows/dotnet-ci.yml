@@ -2,7 +2,9 @@ name: .NET CI Pipeline
 
 on:
   push:
+    branches: [ "MainBranch" ]
   pull_request:
+    branches: [ "MainBranch" ]
   workflow_dispatch:
 
 jobs:
