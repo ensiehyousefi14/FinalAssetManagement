@@ -1,4 +1,4 @@
-# FinalAssetManagement 🚀
+# 🚀 FinalAssetManagement 🚀
 
 ![.NET](https://img.shields.io/badge/.NET-10-blue)
 ![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-green)
