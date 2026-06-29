@@ -1,63 +1,65 @@
-FinalAssetManagement 🚀
+# FinalAssetManagement 🚀
 
-An Asset Management RESTful API built with **ASP.NET Core (.NET 10)**. This project follows **Clean Architecture** and **Separation of Concerns** to ensure high maintainability and scalability.
+![.NET](https://img.shields.io/badge/.NET-10-blue)
+![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
 
-🏗️ Project Architecture
-The project follows **Onion Architecture** principles.
-
-![Architecture Diagram](images/architecture-diagram.png)
-
-✨ Key Features
-- 🏗️ **Clean Architecture:** Strict separation of layers.
-- 🔁 **Repository & Unit of Work:** Efficient data management patterns.
-- 🛡️ **JWT Authentication:** Secure role-based authorization.
-- 📦 **Entity Framework Core:** Code-First approach for database management.
-- 🎨 **AutoMapper:** Automated object mapping.
-- ✅ **FluentValidation:** Robust request validation.
-- ⚡ **Standardized API Responses:** Unified wrapper for all endpoints.
-
-
-🗄️ Database Schema
-Detailed design for asset tracking.
-![Database Diagram](images/DatabaseDiagram.png)
-
-
-⚙️ API Usage & Testing
-🔑 Authentication Flow
-The API enforces secure access.
-
-| Login API Endpoint | Handling Unauthorized Access |
-| :---: | :---: |
-| ![Login API](images/login-api.png) | ![Unauthorized](images/unauthorized.PNG) |
-
-📊 Asset Management
-Example of standard response implementation.
-![Get Assets](images/get-assets.png)
-
-
-🛠️ Getting Started
-📋 Prerequisites
-- .NET SDK 10
-- SQL Server
-
-📥 Installation
-1. Clone the repository:
-   git clone https://github.com/ensiehyousefi14/FinalAssetManagement.git
-   cd FinalAssetManagement
-
-2. Configure Database:
-   Open src/API/appsettings.json and update your connection string.
-
-3. Apply Migrations:
-   dotnet ef database update --project src/Infrastructure --startup-project src/API
+An **Asset Management RESTful API** built with **ASP.NET Core (.NET 10)**.  
+This project follows **Clean Architecture (Onion Architecture)** to ensure high maintainability, scalability, and separation of concerns.
 
 ---
 
-🤝 Support & Contribution
-Issues: If you find any bugs or have feature requests, please open an Issue.
-Contributions: Pull requests are welcome. Please ensure your code follows the existing clean architecture style.
+# ✨ Key Features
 
-⚖️ License
-This project is licensed under the MIT License. Feel free to use and modify it for your needs.
+- 🏗 **Clean Architecture** — Strict separation between Domain, Application, Infrastructure, and API layers  
+- 🔁 **Repository & Unit of Work Pattern** — Structured data access management  
+- 🛡 **JWT Authentication** — Secure role‑based authorization  
+- 📦 **Entity Framework Core (Code‑First)** — Database schema managed with migrations  
+- 🎨 **AutoMapper** — Simplified object mapping between layers  
+- ✅ **FluentValidation** — Structured request validation  
+- ⚡ **Standardized API Responses** — Unified response structure for all endpoints  
 
-Developed with ❤️ by Ensieh Yousefi
+---
+
+# 🏗 Architecture Overview
+
+This project follows **Onion Architecture**, where dependencies always point inward toward the domain layer.
+
+![Architecture Diagram](images/architecture-diagram.png)
+
+📖 Detailed explanation:  
+[Architecture Documentation](docs/architecture.md)
+
+---
+
+# 🗄 Database Design
+
+The database schema is designed to support asset tracking, user management, and system configuration.
+
+![Database Diagram](images/DatabaseDiagram.png)
+
+📖 Detailed documentation:  
+[Database Documentation](docs/database.md)
+
+---
+
+# ⚙️ API Usage
+
+The API uses **JWT authentication** for secure access and can be tested using **Postman or Swagger**.
+
+## Authentication Example
+
+| Login API | Unauthorized Response |
+| :---: | :---: |
+| ![Login API](images/login-api.png) | ![Unauthorized](images/unauthorized.PNG) |
+
+## Asset Endpoint Example
+
+![Get Assets](images/get-assets.png)
+
+📖 Full guide:  
+[API Usage Documentation](docs/api-usage.md)
+
+---
+
+# 📂 Project Structure
