@@ -12,10 +12,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
     public class AssetController : ControllerBase
     {
 
-        private readonly IAssetService assetService;
-        public AssetController(IAssetService assetService)
+        private readonly IAssetService _assetService;
+        public AssetController(IAssetService _assetService)
         {
-            assetService = assetService;
+            _assetService = _assetService;
         }
 
         //---------------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         public async Task<IActionResult> GetAllAssets()
         {
-            var assets = await assetService.GetAllAssetsAsync();
+            var assets = await _assetService.GetAllAssetsAsync();
             return Ok(new ApiResponse<IEnumerable<AssetDto>>(assets, "Assets Retrieved Succesfully.", true));
         }
 
@@ -36,7 +36,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         public async Task<IActionResult> GetAsset([FromRoute] int assetId)
         {
-            var asset = await assetService.GetAssetAsync(assetId);
+            var asset = await _assetService.GetAssetAsync(assetId);
 
             if (asset is null)
                 return NotFound(new ApiResponse<AssetDto>(null, $"Asset With Id {assetId} Not Found.", false));
@@ -51,7 +51,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         public async Task<IActionResult> GetAssetDetails([FromRoute] int assetId)
         {
-            var assetDetails = await assetService.GetAssetDetailsAsync(assetId);
+            var assetDetails = await _assetService.GetAssetDetailsAsync(assetId);
 
             if (assetDetails is null)
                 return NotFound(new ApiResponse<AssetDetailsDto>(null, $"AssetDetails For Id {assetId} Not Found.", false));
@@ -66,7 +66,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         public async Task<IActionResult> GetAssetsByCategory([FromRoute] int categoryId)
         {
-            var assets = await assetService.GetAssetsByCategoryAsync(categoryId);
+            var assets = await _assetService.GetAssetsByCategoryAsync(categoryId);
             return Ok(new ApiResponse<IEnumerable<AssetDto>>(assets, "Assets for This Category Retrieved.", true));
         }
 
@@ -77,7 +77,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         public async Task<IActionResult> GetAssetsByUser([FromRoute] int userId)
         {
-            var assets = await assetService.GetAssetsByUserAsync(userId);
+            var assets = await _assetService.GetAssetsByUserAsync(userId);
             return Ok(new ApiResponse<IEnumerable<AssetDto>>(assets, "Assets for This User Retrieved.", true));
         }
 
@@ -90,7 +90,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         {
             try
             {
-                var createdAsset = await assetService.CreateAssetAsync(dto);
+                var createdAsset = await _assetService.CreateAssetAsync(dto);
                 return CreatedAtAction(nameof(GetAsset),  // Method for Get CreatedAsset
                                        new { assetId = createdAsset.Id }, // parameter for GetAsset Method
                                        new ApiResponse<AssetDto>(createdAsset, "Asset Created Successfully.", true));
@@ -111,7 +111,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         {
             try
             {
-                await assetService.FullUpdateAssetAsync(assetId, dto);
+                await _assetService.FullUpdateAssetAsync(assetId, dto);
                 return Ok(new ApiResponse<string>(null, "Asset Fully Updated Successfully", true));
             }
             catch (InvalidOperationException ex)
@@ -130,7 +130,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         {
             try
             {
-                await assetService.PartialUpdateAssetAsync(assetId, dto);
+                await _assetService.PartialUpdateAssetAsync(assetId, dto);
                 return Ok(new ApiResponse<string>(null, "Asset Partially Updated Successfully.", true));
             }
             catch (InvalidOperationException ex)
@@ -148,7 +148,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         {
             try
             {
-                await assetService.RemoveAssetAsync(assetId);
+                await _assetService.RemoveAssetAsync(assetId);
                 return Ok(new ApiResponse<string>(null, "Asset Deleted Successfully.", true));
             }
             catch (InvalidOperationException ex)
