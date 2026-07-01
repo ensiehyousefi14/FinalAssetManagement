@@ -13,7 +13,8 @@ namespace FinalAssetManagement.WebAPI.Controllers
     {
 
         private readonly IAssetService assetService;
-        public AssetController(IAssetService assetService){
+        public AssetController(IAssetService assetService)
+        {
             assetService = assetService;
         }
 
