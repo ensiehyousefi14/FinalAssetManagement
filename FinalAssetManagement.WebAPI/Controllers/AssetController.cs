@@ -15,6 +15,8 @@ namespace FinalAssetManagement.WebAPI.Controllers
         private readonly IAssetService _assetService;
         public AssetController(IAssetService assetService)
         {
+            این یک خطای عمدی است برای تست CI;
+
             _assetService = assetService;
         }
 
