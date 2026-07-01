@@ -1,4 +1,4 @@
-name: .NET CI Pipeline
+name: .NET CI/CD Pipeline
 
 on:
   push:
@@ -7,12 +7,12 @@ on:
     branches: [ "**" ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build-test-publish:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -60,10 +60,41 @@ jobs:
         run: dotnet test --no-build --configuration Release --verbosity normal
 
       - name: Publish project
-        run: dotnet publish --no-build --configuration Release -o publish
+        run: dotnet publish ./FinalAssetManagement.WebAPI/FinalAssetManagement.WebAPI.csproj --no-build --configuration Release -o publish
 
       - name: Upload publish artifact
         uses: actions/upload-artifact@v4
         with:
           name: published-app
           path: publish
+
+  deploy:
+    needs: build-test-publish
+    runs-on: self-hosted
+    if: github.ref == 'refs/heads/MainBranch'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download publish artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: published-app
+          path: publish
+
+      - name: Stop IIS AppPool
+        run: Stop-WebAppPool -Name "FinalAssetManagement"
+        shell: powershell
+
+      - name: Clean IIS folder
+        run: Remove-Item -Path "E:\_Publish\FinalAssetManagement\*" -Recurse -Force -ErrorAction SilentlyContinue
+        shell: powershell
+
+      - name: Copy new build to IIS
+        run: Copy-Item -Path ".\publish\*" -Destination "E:\_Publish\FinalAssetManagement" -Recurse -Force
+        shell: powershell
+
+      - name: Start IIS AppPool
+        run: Start-WebAppPool -Name "FinalAssetManagement"
+        shell: powershell
