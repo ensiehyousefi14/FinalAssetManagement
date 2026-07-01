@@ -20,7 +20,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] 
+        [HttpGet]
         // RouteSample = api/user(ControllerName)
 
         public async Task<IActionResult> GetAllUsers()
@@ -31,7 +31,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{userId:int}")] 
+        [HttpGet("{userId:int}")]
         // RouteSample = api/user/5
 
         public async Task<IActionResult> GetUser([FromRoute] int userId)
@@ -45,7 +45,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{userId:int}")] 
+        [HttpGet("details/{userId:int}")]
         // RouteSample = api/user/details/5
 
         public async Task<IActionResult> GetUserDetails([FromRoute] int userId)
@@ -60,7 +60,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
         //---------------------------------------------------------------------------------------------------
 
         [AllowAnonymous]
-        [HttpPost] 
+        [HttpPost]
         // RouteSample = api/user
 
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
@@ -69,7 +69,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
             {
                 var createdUser = await _userService.CreateUserAsync(dto);
                 return CreatedAtAction(nameof(GetUser), // Method for Get CreatedUser
-                                       new { userId = createdUser.Id}, // parameter for GetUser Method
+                                       new { userId = createdUser.Id }, // parameter for GetUser Method
                                        new ApiResponse<UserDto>(createdUser, $"User Created Successfully.", true));
 
             }
@@ -81,10 +81,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{userId:int}")] 
+        [HttpPut("{userId:int}")]
         //RouteSample = api/user/5
 
-        public async Task<IActionResult> UpdateUser([FromRoute] int userId, 
+        public async Task<IActionResult> UpdateUser([FromRoute] int userId,
                                                     [FromBody] UpdateUserDto dto)
         {
             try
@@ -101,16 +101,16 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{userId:int}")] 
+        [HttpPatch("{userId:int}")]
         // RouteSample = api/user/5
 
-        public async Task<IActionResult> PartialUpdateUser([FromRoute] int userId, 
+        public async Task<IActionResult> PartialUpdateUser([FromRoute] int userId,
                                                            [FromBody] PatchUserDto dto)
         {
             try
             {
                 await _userService.PartialUpdateUserAsync(userId, dto);
-                return Ok(new ApiResponse<string>(null,"User Partially Updated Successfully.",true));
+                return Ok(new ApiResponse<string>(null, "User Partially Updated Successfully.", true));
             }
             catch (InvalidOperationException ex)
             {
@@ -120,7 +120,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{userId:int}")] 
+        [HttpDelete("{userId:int}")]
         //RouteSample = api/user/5
 
         public async Task<IActionResult> RemoveUser([FromRoute] int userId)

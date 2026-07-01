@@ -14,7 +14,7 @@ namespace FinalAssetManagement.Core.Entities
 
         private User() //for EFCore
         {
-                
+
         }
 
         public User(string userName, string passwordHash)

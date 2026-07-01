@@ -20,7 +20,7 @@ namespace FinalAssetManagement.Infrastructure.Configurations
 
             builder.Property(a => a.Price)
                    .IsRequired()
-                   .HasPrecision(18,2);
+                   .HasPrecision(18, 2);
 
             //--------------------------------------------------------
 

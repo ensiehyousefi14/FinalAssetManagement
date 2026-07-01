@@ -16,7 +16,7 @@ namespace FinalAssetManagement.Core.Entities
 
         private Category() //for EFCore
         {
-            
+
         }
 
         public Category(string name)

@@ -31,7 +31,7 @@ namespace FinalAssetManagement.Infrastructure.Persistence
             var entries = ChangeTracker.Entries()
                 .Where(e => e.Entity is BaseEntity &&
                            (
-                                e.State == EntityState.Added || 
+                                e.State == EntityState.Added ||
                                 e.State == EntityState.Modified
                            )
                       );

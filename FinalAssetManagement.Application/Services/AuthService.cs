@@ -13,8 +13,8 @@ namespace FinalAssetManagement.Application.Services
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IPasswordHasher _passwordHasher;
 
-        public AuthService(IUnitOfWork unitOfWork, 
-                           IJwtTokenGenerator jwtTokenGenerator, 
+        public AuthService(IUnitOfWork unitOfWork,
+                           IJwtTokenGenerator jwtTokenGenerator,
                            IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;

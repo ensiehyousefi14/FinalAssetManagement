@@ -11,7 +11,7 @@ namespace FinalAssetManagement.Application.DTOs.Asset
         public decimal Price { get; set; }
         public CategoryDto Category { get; set; } = null!;
         public UserDto? User { get; set; }
-        public IEnumerable<TransactionDto> Transactions { get; set; } = 
+        public IEnumerable<TransactionDto> Transactions { get; set; } =
                                                         new List<TransactionDto>();
 
     }

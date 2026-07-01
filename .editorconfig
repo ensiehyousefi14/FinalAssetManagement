@@ -1,0 +1,25 @@
+# این فایل قانون اصلی پروژه است
+root = true
+
+# تنظیمات برای تمام فایل‌های سی‌شارپ (*.cs)
+[*.cs]
+
+# ۱. فاصله‌گذاری و استایل فایل
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# ۲. قانون رفتن آکولاد به خط جدید
+csharp_new_line_before_open_brace = all
+
+# ۳. قانون شروع فیلدهای خصوصی با آندرلاین (_)
+dotnet_naming_rule.private_members_with_underscore.symbols = private_fields
+dotnet_naming_rule.private_members_with_underscore.style = prefix_underscore
+dotnet_naming_rule.private_members_with_underscore.severity = suggestion
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_style.prefix_underscore.required_prefix = _
+dotnet_naming_style.prefix_underscore.capitalization = camel_case
