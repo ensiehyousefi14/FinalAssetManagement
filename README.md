@@ -1,6 +1,7 @@
 # FinalAssetManagement 🚀
 
 ![CI](https://github.com/ensiehyousefi14/FinalAssetManagement/actions/workflows/dotnet-ci.yml/badge.svg)
+
 An Asset Management RESTful API built with **ASP.NET Core (.NET 10)**.
 
 ![.NET](https://img.shields.io/badge/.NET-10-blue)
