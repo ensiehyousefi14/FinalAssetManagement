@@ -20,7 +20,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] 
+        [HttpGet]
         // RouteSample = api/category
 
         public async Task<IActionResult> GetAllCategories()
@@ -31,7 +31,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{categoryId:int}")] 
+        [HttpGet("{categoryId:int}")]
         // RouteSample = api/category/5
 
         public async Task<IActionResult> GetCategory([FromRoute] int categoryId)
@@ -46,7 +46,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{categoryId:int}")] 
+        [HttpGet("details/{categoryId:int}")]
         // RouteSample = api/category/details/5
 
         public async Task<IActionResult> GetCategoryDetails([FromRoute] int categoryId)
@@ -61,7 +61,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost] 
+        [HttpPost]
         // RouteSample = api/category
 
         public async Task<IActionResult> CreateCategory([FromBody] CreateCategoryDto dto)
@@ -70,7 +70,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
             {
                 var createdCategory = await _categoryService.CreateCategoryAsync(dto);
                 return CreatedAtAction(nameof(GetCategory), // Method for Get CreatedCategory
-                                       new {categoryId = createdCategory.Id}, // parameter for GetCategory Method
+                                       new { categoryId = createdCategory.Id }, // parameter for GetCategory Method
                                        new ApiResponse<CategoryDto>(createdCategory, "Categroy Created Successfully.", true));
             }
             catch (InvalidOperationException ex)
@@ -81,10 +81,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{categoryId:int}")] 
+        [HttpPut("{categoryId:int}")]
         // RouteSample = api/category/5
 
-        public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId, 
+        public async Task<IActionResult> UpdateCategory([FromRoute] int categoryId,
                                                         [FromBody] UpdateCategoryDto dto)
         {
             try
@@ -100,10 +100,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{categoryId:int}")] 
+        [HttpPatch("{categoryId:int}")]
         // RouteSample = api/category/5
 
-        public async Task<IActionResult> PartialUpdateCategory([FromRoute] int categoryId, 
+        public async Task<IActionResult> PartialUpdateCategory([FromRoute] int categoryId,
                                                                [FromBody] PatchCategoryDto dto)
         {
             try
@@ -119,7 +119,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{categoryId:int}")] 
+        [HttpDelete("{categoryId:int}")]
         // RouteSample = api/category/5
 
         public async Task<IActionResult> RemoveCategory([FromRoute] int categoryId)

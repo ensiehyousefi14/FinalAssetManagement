@@ -22,8 +22,8 @@ namespace FinalAssetManagement.Application.Mappings
             CreateMap<Asset, AssetDto>()
                      .ForMember(dest => dest.CategoryName,
                       opt => opt.MapFrom(src => src.Category.Name))
-                     .ForMember(dest => dest.UserName, 
-                      opt => opt.MapFrom(src => 
+                     .ForMember(dest => dest.UserName,
+                      opt => opt.MapFrom(src =>
                                         src.User != null ? src.User.UserName : null));
 
             CreateMap<Asset, AssetDetailsDto>();
@@ -47,13 +47,13 @@ namespace FinalAssetManagement.Application.Mappings
             //========================================================
 
             CreateMap<Transaction, TransactionDto>()
-                .ForMember(dest => dest.TransactionType, 
+                .ForMember(dest => dest.TransactionType,
                                    opt => opt.MapFrom(src => src.Type.ToString()))
-                .ForMember(dest => dest.AssetName, 
+                .ForMember(dest => dest.AssetName,
                                    opt => opt.MapFrom(src => src.Asset.Name));
 
             CreateMap<Transaction, TransactionDetailsDto>()
-                .ForMember(dest => dest.TransactionType, 
+                .ForMember(dest => dest.TransactionType,
                            opt => opt.MapFrom(src => src.Type.ToString()));
 
             //========================================================

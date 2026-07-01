@@ -20,7 +20,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet] 
+        [HttpGet]
         // RouteSample = api/asset(ControllerName)
 
         public async Task<IActionResult> GetAllAssets()
@@ -31,7 +31,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("{assetId}")] 
+        [HttpGet("{assetId}")]
         // RouteSample = api/asset/5
 
         public async Task<IActionResult> GetAsset([FromRoute] int assetId)
@@ -46,7 +46,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("details/{assetId}")] 
+        [HttpGet("details/{assetId}")]
         // RouteSample = api/asset/details/5
 
         public async Task<IActionResult> GetAssetDetails([FromRoute] int assetId)
@@ -61,7 +61,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("category/{categoryId}")] 
+        [HttpGet("category/{categoryId}")]
         // RouteSample = api/asset/category/3
 
         public async Task<IActionResult> GetAssetsByCategory([FromRoute] int categoryId)
@@ -72,7 +72,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpGet("user/{userId}")] 
+        [HttpGet("user/{userId}")]
         // RouteSample = api/asset/user/4
 
         public async Task<IActionResult> GetAssetsByUser([FromRoute] int userId)
@@ -83,7 +83,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPost] 
+        [HttpPost]
         // RouteSample = api/asset
 
         public async Task<IActionResult> CreateAsset([FromBody] CreateAssetDto dto)
@@ -92,7 +92,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
             {
                 var createdAsset = await _assetService.CreateAssetAsync(dto);
                 return CreatedAtAction(nameof(GetAsset),  // Method for Get CreatedAsset
-                                       new { assetId = createdAsset.Id}, // parameter for GetAsset Method
+                                       new { assetId = createdAsset.Id }, // parameter for GetAsset Method
                                        new ApiResponse<AssetDto>(createdAsset, "Asset Created Successfully.", true));
             }
             catch (InvalidOperationException ex)
@@ -103,10 +103,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPut("{assetId}")] 
+        [HttpPut("{assetId}")]
         // RouteSample = api/asset/5
 
-        public async Task<IActionResult> UpdateAsset([FromRoute] int assetId, 
+        public async Task<IActionResult> UpdateAsset([FromRoute] int assetId,
                                                      [FromBody] UpdateAssetDto dto)
         {
             try
@@ -122,10 +122,10 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpPatch("{assetId}")] 
+        [HttpPatch("{assetId}")]
         // RouteSample = api/asset/5
 
-        public async Task<IActionResult> PartialUpdateAsset([FromRoute] int assetId, 
+        public async Task<IActionResult> PartialUpdateAsset([FromRoute] int assetId,
                                                             [FromBody] PatchAssetDto dto)
         {
             try
@@ -141,7 +141,7 @@ namespace FinalAssetManagement.WebAPI.Controllers
 
         //---------------------------------------------------------------------------------------------------
 
-        [HttpDelete("{assetId}")] 
+        [HttpDelete("{assetId}")]
         // routeSample = api/asset/5
 
         public async Task<IActionResult> RemoveAsset([FromRoute] int assetId)

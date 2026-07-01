@@ -14,8 +14,8 @@ namespace FinalAssetManagement.Application.Services
         private readonly IMapper _mapper;
         private readonly IPasswordHasher _passwordHasher;
 
-        public UserService(IUnitOfWork unitOfWork, 
-                           IMapper mapper, 
+        public UserService(IUnitOfWork unitOfWork,
+                           IMapper mapper,
                            IPasswordHasher passwordHasher)
         {
             _unitOfWork = unitOfWork;

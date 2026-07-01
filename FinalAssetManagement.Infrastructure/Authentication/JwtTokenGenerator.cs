@@ -49,8 +49,8 @@ namespace FinalAssetManagement.Infrastructure.Authentication
 
             // 4) Creating the actual JWT token: Issuer, Audience, Claims, Expiration, Signing Credentials
             var token = new JwtSecurityToken(
-                            issuer:_settings.Issuer,
-                            audience:_settings.Audience,
+                            issuer: _settings.Issuer,
+                            audience: _settings.Audience,
                             claims: claims,
                             expires: DateTime.UtcNow.AddMinutes(_settings.ExpiryInMinutes),
                             signingCredentials: signingCredentials);

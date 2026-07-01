@@ -7,10 +7,10 @@ namespace FinalAssetManagement.Infrastructure.Persistence.Repositories
         //Constructor
 
         private readonly ApplicationDbContext _context;
-        public UnitOfWork(ApplicationDbContext context, 
+        public UnitOfWork(ApplicationDbContext context,
                           IAssetRepository assetRepository,
-                          ICategoryRepository categoryRepository, 
-                          IUserRepository userRepository, 
+                          ICategoryRepository categoryRepository,
+                          IUserRepository userRepository,
                           ITransactionRepository transactionRepository)
         {
             _context = context;

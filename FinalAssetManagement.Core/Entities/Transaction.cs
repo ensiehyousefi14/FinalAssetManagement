@@ -20,7 +20,7 @@ namespace FinalAssetManagement.Core.Entities
 
         private Transaction() // for EFCore
         {
-            
+
         }
 
         // Internal constructor so that Transaction cannot be created outside

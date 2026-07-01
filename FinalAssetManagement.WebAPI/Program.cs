@@ -77,7 +77,7 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSet
 
 var jwtSettings = builder.Configuration
                          .GetSection("JwtSettings")
-                         .Get<JwtSettings>() 
+                         .Get<JwtSettings>()
                          ?? throw new InvalidOperationException("JwtSettings section is missing or invalid.");
 
 builder.Services.AddAuthentication(options =>
