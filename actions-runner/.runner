@@ -1,0 +1,11 @@
+﻿{
+  "agentId": 22,
+  "agentName": "FAHIMEH-PC",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://pipelinesghubeus13.actions.githubusercontent.com/kgKIkUabiPaZbxEFuEJcdYgTLSka8sUbr9HwJbRRSOE4U06pwO/",
+  "gitHubUrl": "https://github.com/ensiehyousefi14/FinalAssetManagement",
+  "workFolder": ".\\svc.cmd install",
+  "useV2Flow": true,
+  "serverUrlV2": "https://broker.actions.githubusercontent.com/"
+}

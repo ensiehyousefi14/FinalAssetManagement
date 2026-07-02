@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "ensiehyousefi14/FinalAssetManagement",
+  "pipelineDirectory": "FinalAssetManagement",
+  "workspaceDirectory": "FinalAssetManagement\\FinalAssetManagement",
+  "repositories": {
+    "ensiehyousefi14/FinalAssetManagement": {
+      "repositoryPath": "FinalAssetManagement\\FinalAssetManagement",
+      "lastRunOn": "07/02/2026 17:35:39 +03:30"
+    }
+  },
+  "lastRunOn": "07/02/2026 18:07:26 +03:30"
+}
