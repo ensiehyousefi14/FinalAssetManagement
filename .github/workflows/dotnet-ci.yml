@@ -71,6 +71,7 @@ jobs:
   deploy:
     needs: build-test-publish
     runs-on: self-hosted
+    # نکته: اگر نام برنچ اصلی شما متفاوت است (مثلاً main کوچک)، خط زیر را اصلاح کنید
     if: github.ref == 'refs/heads/MainBranch'
 
     steps:
@@ -83,18 +84,30 @@ jobs:
           name: published-app
           path: publish
 
-      - name: Stop IIS AppPool
-        run: Stop-WebAppPool -Name "FinalAssetManagement"
+      - name: Stop IIS Site and AppPool
+        run: |
+          Import-Module WebAdministration
+          # توقف سایت و پول برای آزاد شدن فایل‌ها
+          Stop-WebAppPool -Name "FinalAssetManagement"
+          Stop-WebSite -Name "FinalAssetManagement" -ErrorAction SilentlyContinue
         shell: powershell
 
       - name: Clean IIS folder
-        run: Remove-Item -Path "E:\_Publish\FinalAssetManagement\*" -Recurse -Force -ErrorAction SilentlyContinue
+        run: |
+          # پاکسازی پوشه مقصد قبل از کپی فایل‌های جدید
+          Remove-Item -Path "E:\_Publish\FinalAssetManagement\*" -Recurse -Force -ErrorAction SilentlyContinue
         shell: powershell
 
       - name: Copy new build to IIS
-        run: Copy-Item -Path ".\publish\*" -Destination "E:\_Publish\FinalAssetManagement" -Recurse -Force
+        run: |
+          # کپی فایل‌های بیلد شده به پوشه IIS
+          Copy-Item -Path ".\publish\*" -Destination "E:\_Publish\FinalAssetManagement" -Recurse -Force
         shell: powershell
 
-      - name: Start IIS AppPool
-        run: Start-WebAppPool -Name "FinalAssetManagement"
+      - name: Start IIS Site and AppPool
+        run: |
+          Import-Module WebAdministration
+          # راه اندازی مجدد
+          Start-WebAppPool -Name "FinalAssetManagement"
+          Start-WebSite -Name "FinalAssetManagement" -ErrorAction SilentlyContinue
         shell: powershell
